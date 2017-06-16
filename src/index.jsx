@@ -73,6 +73,14 @@ let ImageStory = React.createClass({
     return !this.images.some((img) => img.loading)
   },
 
+  imagesPrepared() {
+    if (!this.images || !this.images.length) return;
+    const prepared = !this.images.some((img) => img.loading);
+    if (prepared) {
+      this.props.onLoad && this.props.onLoad();
+    }
+    return prepared;
+  },
 
   getArrangedImages() {
     let result = null;
